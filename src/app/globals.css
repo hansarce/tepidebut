@@ -24,3 +24,35 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
+  .animate-float {
+     animation: float 2s ease-in-out infinite;
+   }
+   @keyframes float {
+     0%, 100% { transform: translateY(0); }
+     50% { transform: translateY(-20px); }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.perspective {
+  perspective: 1200px;
+}
+.rotateY-120deg   { transform: rotateY(120deg); }    /* if you ever need it elsewhere */
