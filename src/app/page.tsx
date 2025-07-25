@@ -12,6 +12,23 @@ export default function Home() {
   const [petals, setPetals] = useState<Array<{left: number, width: number, height: number, delay: number, duration: number, rotate: number, drift: number}>>([]);
   const [isClient, setIsClient] = useState(false);
 
+  // Add this effect specifically for overflow prevention
+  useEffect(() => {
+    const preventOverflow = () => {
+      document.documentElement.style.overflowX = 'hidden';
+      document.body.style.overflowX = 'hidden';
+      document.documentElement.style.width = '100%';
+      document.body.style.width = '100%';
+    };
+
+    preventOverflow();
+    window.addEventListener('resize', preventOverflow);
+
+    return () => {
+      window.removeEventListener('resize', preventOverflow);
+    };
+  }, []);
+
   useEffect(() => {
     setIsClient(true);
     if (!scrollEnabled) {
@@ -85,22 +102,40 @@ export default function Home() {
 
   return (
     <>
+      <style jsx global>{`
+        * {
+          max-width: 100vw;
+        }
+        html, body {
+          width: 100vw;
+          overflow-x: hidden;
+          position: relative;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+        }
+      `}</style>
+
       {/* Hero Section */}
-      <section>
-        <main className="relative min-h-screen w-screen overflow-hidden">
-          {/* Scroll reset logic moved here */}
+     <section className="w-screen overflow-hidden " onClick={handleScrollDown}>
+        <main className="relative h-screen w-screen overflow-hidden">
+          {/* Scroll reset logic */}
           <ResetScrollOnMount setScrollEnabled={setScrollEnabled} />
-          {/* Background Image */}
-          <Image
-            src="/home.jpg"
-            alt="Home Background"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-            className="z-0"
-          />
-          {/* Umbrella Top Left */}
-          <div className="absolute -top-45 -left-45 z-20">
+          {/* Background Image with explicit width */}
+          <div className="absolute inset-0 overflow-hidden">
+            <Image
+              src="/home.jpg"
+              alt="Home Background"
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+              className="z-0"
+            />
+          </div>
+          
+          {/* Umbrellas with constrained positioning */}
+          <div className="absolute top-0 left-0 z-20 overflow-hidden" style={{ width: '500px', height: '500px', transform: 'translate(-45%, -45%)' }}>
             <Image
               src="/umbrella.png"
               alt="Umbrella Top Left"
@@ -111,8 +146,7 @@ export default function Home() {
               style={{ animationDuration: "15s" }}
             />
           </div>
-          {/* Umbrella Bottom Right */}
-          <div className="absolute -bottom-45 -right-45 z-20">
+          <div className="absolute bottom-0 right-0 z-20 overflow-hidden" style={{ width: '500px', height: '500px', transform: 'translate(45%, 45%)' }}>
             <Image
               src="/umbrella.png"
               alt="Umbrella Bottom Right"
@@ -147,9 +181,9 @@ export default function Home() {
       </section>
 
       {/* Scroll Section */}
-      <section
+    <section
         ref={scrollSectionRef}
-        className="relative min-h-screen flex items-center justify-center"
+        className="relative min-h-screen w-screen flex items-center justify-center overflow-hidden"
       >
         <Image
           src="/scroll.jpg"
@@ -168,7 +202,7 @@ export default function Home() {
       {/* Scroll2 Section */}
       <section
         ref={scroll2SectionRef}
-        className="relative min-h-screen flex items-center justify-center"
+        className="relative min-h-screen w-screen flex items-center justify-center overflow-hidden"
       >
         <Image
           src="/scroll2.jpg"
@@ -187,7 +221,7 @@ export default function Home() {
       {/* Card Countdown */}
       <section
         ref={thirdSectionRef}
-        className="min-h-screen flex items-center justify-center bg-gray-100 relative overflow-hidden"
+        className="min-h-screen w-screen flex items-center justify-center bg-gray-100 relative overflow-hidden"
         style={{
           backgroundImage: "url('/eventdetailsbg.png')",
           backgroundSize: "cover",
@@ -224,7 +258,6 @@ export default function Home() {
               z-index: 1;
               transition: filter 0.2s;
               filter: blur(0.2px);
-              overflow: visible;
             }
             .falling-petal::after {
               content: '';
@@ -263,7 +296,7 @@ export default function Home() {
           <div className="flex flex-col reverse-">
             {/* Japanese Lantern - moved to the very top */}
             <div
-              className="jp-lantern "
+              className="jp-lantern"
               style={{ width: 150, height: 150 }}
             >
               <Image
@@ -318,115 +351,109 @@ export default function Home() {
       </section>
 
       {/* Photos Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center bg-black relative"
+      <section className="min-h-screen w-screen flex flex-col items-center justify-center bg-black relative overflow-hidden"
          style={{
            backgroundImage: "url('/photosbg.jpg')",
            backgroundSize: "cover",
            backgroundPosition: "center",
          }}>
-        <h2 className="text-4xl font-bold text-white mb-8 mt-8 drop-shadow-lg z-10">Photos</h2>
+        <h2 className="text-4xl font-bold text-white -mb-12 drop-shadow-lg z-10">Photos</h2>
         <Carousel />
       </section>
 
-
       {/* Event Details with Map Section*/}
-  <section
-  className="min-h-screen flex flex-col items-center justify-center bg-black relative"
-  style={{
-    backgroundImage: "url('/eventbg.jpg')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
-  {/* Card with background */}
-  <div 
-    className="mx-auto w-[320px] h-[720px] rounded-2xl flex flex-col items-center justify-start relative overflow-hidden p-8"
-    style={{
-      backgroundImage: "url('/scrollpageforevent.png')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  >
-    {/* Event Header */}
-    <div className="text-center mb-5 mt-20">
-      <h1 className="text-4xl font-bold text-pink-700 mb-2">Chrisette's</h1>
-      <h1 className="text-4xl font-serif font-bold text-pink-600 mb-4">Debut</h1>
-      <p className="text-[14px]  text-black">Don't miss this wonderful night.</p>
-      <p className="text-[14px]  text-black">A flowery night to remember</p>
-    </div>
+      <section
+        className="min-h-screen flex flex-col w-screen items-center justify-center bg-black relative overflow-hidden"
+        style={{
+          backgroundImage: "url('/eventbg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Card with background */}
+        <div 
+          className="mx-auto w-[320px] h-[720px] rounded-2xl flex flex-col items-center justify-start relative overflow-hidden p-8"
+          style={{
+            backgroundImage: "url('/scrollpageforevent.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {/* Event Header */}
+          <div className="text-center mb-5 mt-20">
+            <h1 className="text-4xl font-bold text-pink-700 mb-2">Chrisette's</h1>
+            <h1 className="text-4xl font-serif font-bold text-pink-600 mb-4">Debut</h1>
+            <p className="text-[14px]  text-black">Don't miss this wonderful night.</p>
+            <p className="text-[14px]  text-black">A flowery night to remember</p>
+          </div>
 
-    {/* Event Details */}
-    <div className="w-full text-center">
-      <div className=" pb-4">
-        <p className="text-[14px]  text-black">Dress: Cocktail/Semi-Formal</p>
-        <p className="text-[14px]  text-black">(Pastel Pink/Yellow/White)</p>
-      </div>
+          {/* Event Details */}
+          <div className="w-full text-center">
+            <div className=" pb-4">
+              <p className="text-[14px]  text-black">Dress: Cocktail/Semi-Formal</p>
+              <p className="text-[14px]  text-black">(Pastel Pink/Yellow/White)</p>
+            </div>
 
-      <div className="pb-4">
-        <p className="text-[14px]  text-black">Venue: Casa Signora</p>
-      </div>
+            <div className="pb-4">
+              <p className="text-[14px]  text-black">Venue: Casa Signora</p>
+            </div>
 
-      <div className="pb-4">
-        <p className="text-[14px]  text-black">Time: August 24, 2025 4:00 PM</p>
-      </div>
+            <div className="pb-4">
+              <p className="text-[14px]  text-black">Time: August 24, 2025 4:00 PM</p>
+            </div>
 
-      <div className="pt-2">
-        <p className="text-xl font-semibold text-pink-700 mb-2">Event Location</p>
-        <div className="rounded-lg overflow-hidden">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3866.424982414458!2d120.97443017592654!3d14.2867226861633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d5c5897658d9%3A0x7305c4cfadc91193!2sCasa%20Signora!5e0!3m2!1sen!2sph!4v1752996706860!5m2!1sen!2sph"
-            width="175"
-            height="185"
-            style={{ border: 0 }}
-            allowFullScreen 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            className="rounded-lg flex justify-center ml-9"
-          ></iframe>
+            <div className="pt-2">
+              <p className="text-xl font-semibold text-pink-700 mb-2">Event Location</p>
+              <div className="rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3866.424982414458!2d120.97443017592654!3d14.2867226861633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d5c5897658d9%3A0x7305c4cfadc91193!2sCasa%20Signora!5e0!3m2!1sen!2sph!4v1752996706860!5m2!1sen!2sph"
+                  width="175"
+                  height="185"
+                  style={{ border: 0 }}
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-lg flex justify-center ml-9"
+                ></iframe>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* RSVP Section */}
       <section
-        className="min-h-screen flex flex-col items-center justify-center relative"
+        className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
         style={{
           backgroundImage: "url('/rsvpbg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="bg-white/80 rounded-xl shadow-lg p-10 max-w-xl w-full mx-4 text-center z-10">
-          <h2 className="text-3xl font-bold mb-4 text-purple-700">RSVP</h2>
-          <p className="mb-6 text-lg">Kindly confirm your attendance by August 1, 2025.</p>
+        
+          <h2 className="text-3xl font-bold mb-4 text-[#D12B31]">RSVP</h2>
+          <p className="mb-6 text-lg flex flex-col items-center justify-center text-[#D12B31] text-center">Kindly confirm your attendance <br/> by August 1, 2025.</p>
           <form className="flex flex-col gap-4">
+            <h3 className="text-lg  text-[#D12B31]">Your Name</h3>
             <input
               type="text"
-              placeholder="Your Name"
-              className="p-3 rounded border border-gray-300"
+              placeholder="Name"
+              className="p-3 rounded border text-[#D12B31] border-[#D12B31]"
               required
             />
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="p-3 rounded border border-gray-300"
-              required
-            />
-            <select className="p-3 rounded border border-gray-300" required>
-              <option value="">Will you attend?</option>
+            <h3 className="text-lg  text-[#D12B31]">Will you attend?</h3>
+            <select className="p-3 rounded border text-[#D12B31] border-[#D12B31]" required>
               <option value="yes">Yes, I will attend</option>
               <option value="no">No, I can't make it</option>
             </select>
             <button
               type="submit"
-              className="bg-pink-600 text-white font-semibold py-2 rounded hover:bg-pink-700 transition"
+              className="bg-[#D12B31]  font-semibold py-2 rounded hover:bg-[#D12B31]/80 transition"
             >
-              Submit RSVP
+              Submit 
             </button>
           </form>
-        </div>
+        
       </section>
     </>
   );
