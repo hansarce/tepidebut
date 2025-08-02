@@ -868,8 +868,8 @@ const billnames = [
         ))}
          {submitted ? (
     <div className="text-center z-10 p-8 bg-white/90 rounded-lg max-w-md mx-4">
-      <h2 className={`${luxurious.className} text-4xl font-bold mb-4 text-[#D12B31]`}>Thank You!</h2>
-      <p className={`${quicksand.className} text-xl text-[#D12B31]`}>
+      <h2 className={`${luxurious.className} text-4xl font-bold md:text-8xl mb-4 text-[#D12B31]`}>Thank You!</h2>
+      <p className={`${quicksand.className} text-xl md:text-[22px] text-[#D12B31]`}>
         Thanks for filling up! We look forward to seeing you at the event!
       </p>
     </div>
