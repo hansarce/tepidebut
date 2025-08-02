@@ -10,6 +10,13 @@ const images = [
   { src: "/slideshow/slide4.jpg", alt: "Slide 4" },
   { src: "/slideshow/slide5.jpg", alt: "Slide 5" },
   { src: "/slideshow/slide6.jpg", alt: "Slide 6" },
+  { src: "/slideshow/slide7.jpg", alt: "Slide 7" },
+  { src: "/slideshow/slide8.jpg", alt: "Slide 8" },
+  { src: "/slideshow/slide9.jpg", alt: "Slide 9" },
+  { src: "/slideshow/slide10.jpg", alt: "Slide 10" },
+  { src: "/slideshow/slide11.jpg", alt: "Slide 11" },
+  { src: "/slideshow/slide12.jpg", alt: "Slide 12" },
+
 ];
 
 export default function Carousel() {

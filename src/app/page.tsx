@@ -1,5 +1,4 @@
 "use client";
-
 import Carousel from "@/components/Carousel";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -55,7 +54,8 @@ export default function Home() {
   const thirdSectionRef = useRef<HTMLDivElement>(null);
   const [petals, setPetals] = useState<Array<{left: number, width: number, height: number, delay: number, duration: number, rotate: number, drift: number}>>([]);
   const [isClient, setIsClient] = useState(false);
-  
+   const [audioPlaying, setAudioPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   // Animation refs and controls
   const rosesRef = useRef(null);
   const treasuresRef = useRef(null);
@@ -171,8 +171,31 @@ const treasureNames = [
   "Maam Jessica Halina",
   "Maam Kim Pearl Dalma",
   "Maam Clyde Colarina",
-  "Arlene",
 ];
+
+const billnames = [
+  'Mr. and Mrs. Jervin Paguirigan',
+  'Mr. and Mrs. Erwin Ramos',
+  'Mr. Jayrom Penaranda/Lovely So',
+  'Mr. and Mrs. Eric Moralde',
+  'Kagawad Jenny Viray(Jeremy Brylle Viray)',
+  'Mr. And Mrs.Joseph Malubago',
+  'Mr. And Mrs Irani Decosto',
+  'Mr. And Mrs.Miguel Antonio Cuneta',
+  'Kagawad Jess Basco',
+  'Mr.Rolando Galima',
+  'Mr.Glenn Demafeliz',
+  'Mr.Randy Gabilan',
+  'Rhoda Yasan̈a',
+  'Mr. And Mrs.Jason Arce',
+  'Mr and Mrs. Jericho Delfin',
+  'Jasmin Yasan̈a',
+  'Loureen Yasania',
+  'Mr. And Mrs. Jimmy Omelis',
+  'Ederlyn Tamayo',
+  'Mr. And Mrs. Emerito Yasan̈a',
+  'Daisy Yasan̈a Velarde'];
+
 
   // Add this effect specifically for overflow prevention
   useEffect(() => {
@@ -191,19 +214,19 @@ const treasureNames = [
     };
   }, []);
    const roses = [
-    'Hans Arce', 'Khristian Agustin', 'Marc Custodio', 'Patrick Lim',
-    'Rhon Reyes', 'Reinor Catapang', 'Marwin Sacman', 'Akiro Rabino',
-    'Keefe De Guzman', 'Eldrin Orense', 'Russel Manalo', 'Junjun Aguilar',
-    'Rei Del Rosario', 'Vince Lita', 'Ron Agustin', 'Joshua Cerezo',
-    'Aian Padilla', 'Christian De Jesus'
+    'Josh Stephen Arce','Hans Stephen Arce', 'Theos Stefan So', 'Rob Stephen So', '.In̈igo Sebastian Balaguer ',
+    'Jherome Omelis', 'Ryan Yasan̈a', 'Juffard Carob Yasania', 'Markniel Martinez',
+    'James Cedrick Naces', 'Patrick Campus', 'Jaymican Pen̈aranda', ' Zyron Olaes',
+    'Ronald Vincent So', 'Randelle Yasan̈a', 'Tatay Oscar Yasan̈a', 'Ronald So',
+    'Papa Robert So'
   ];
 
   const candles = [
-    'Irish Joy Viudez', 'Francine Parra', 'Reese Tapan', 'Chloe Carlos',
-    'Jillian Azarcon', 'Tricia Fungo', 'Angelica Pablo', 'Charisse Bartolome',
-    'Kimberly Narciso', 'Cianne Aguilar', 'Cassandra Valdez', 'Kyla Mae Nardo',
-    'Princess Jaelene Dela Cruz', 'Fritzie Joy Lazaro', 'Hanna Basilio',
-    'Angelica Castillo', 'Shannon Recaido', 'Christine Joy Catapang'
+    'Honey Margaret So', 'Cassandra Julia Balaguer', 'Pau Francisco', 'Jen Catherine Cabrera',
+    'Kim Esparas', 'Alexa Trasporto', 'Jade Ventura', 'Carlisle Gempis',
+    'Chloe Torres', 'Sophia Thea Paguirigan', 'Althea Paguirigan', 'Jasper Casey Saem',
+    'Joanna Chase Yasania','Shane Castan̈arez', 'Yuri Mallanes', 'Joshua Dela Pen̈a',
+    'Angelo Perreras', 'Marcus Orbeso'
   ];
 
   useEffect(() => {
@@ -236,6 +259,36 @@ const treasureNames = [
   }, [isClient]);
 
   const handleScrollDown = () => {
+  // Play the audio if it's not already playing
+  if (audioRef.current && !audioPlaying) {
+    audioRef.current.play()
+      .then(() => {
+        setScrollEnabled(true);
+        setTimeout(() => {
+          scrollSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+          setTimeout(() => {
+            scroll2SectionRef.current?.scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => {
+              thirdSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 1800);
+          }, 1800);
+        }, 50);
+      })
+      .catch(error => {
+        console.error("Audio playback failed:", error);
+        // Continue with scroll even if audio fails
+        setScrollEnabled(true);
+        setTimeout(() => {
+          scrollSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+          setTimeout(() => {
+            scroll2SectionRef.current?.scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => {
+              thirdSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 1800);
+          }, 3200);
+        }, 50);
+      });
+  } else {
     setScrollEnabled(true);
     setTimeout(() => {
       scrollSectionRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -246,7 +299,8 @@ const treasureNames = [
         }, 1800);
       }, 1800);
     }, 50);
-  };
+  }
+};
 
   // Helper to randomize values
   const getRandom = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -280,6 +334,13 @@ const treasureNames = [
   return (
     
     <>
+   
+     <audio 
+      ref={audioRef}
+      src="/bgmusic.mp3" 
+      loop
+      onPlay={() => setAudioPlaying(true)}
+    />
       <style jsx global>{`
         * {
           max-width: 100vw;
@@ -298,8 +359,7 @@ const treasureNames = [
       {/* Hero Section */}
      <section className="w-screen overflow-hidden " onClick={handleScrollDown}>
         <main className="relative h-screen w-screen overflow-hidden">
-          {/* Scroll reset logic */}
-          <ResetScrollOnMount setScrollEnabled={setScrollEnabled} />
+         
           {/* Background Image with explicit width */}
           <div className="absolute inset-0 overflow-hidden">
             <Image
@@ -344,14 +404,19 @@ const treasureNames = [
             <h1 className={luxurious.className + " text-[70px] leading-[1] pt-[20px]"}>Chrisette <br />
             Stephanie So</h1>
             <div className="flex justify-center mt-6">
-              <button onClick={handleScrollDown} aria-label="Scroll Down">
+                        <button onClick={handleScrollDown} aria-label="Scroll Down">
                 <Image
                   src="/scrdown.png"
                   alt="Scroll Down"
                   width={60}
                   height={60}
-                  className="animate-float"
+                  className={`animate-float ${audioPlaying ? 'ring-2 ring-white rounded-full' : ''}`}
                 />
+                {audioPlaying && (
+                  <span className="absolute -bottom-6 text-white text-xs">
+                    Music Playing
+                  </span>
+                )}
               </button>
             </div>
           </div>
@@ -709,6 +774,7 @@ const treasureNames = [
       </section>
     
       {/* 18 Treasures Section */}
+           {/* 18 Treasures Section */}
       <section 
         ref={treasuresRef}
         className="min-h-screen w-screen flex flex-col items-center justify-center py-12 relative overflow-hidden"
@@ -744,7 +810,31 @@ const treasureNames = [
                   custom={index}
                   className={`${quicksand.className} text-lg text-gray-100`}
                 >
-               {name}
+                  {name}
+                </motion.p>
+              ))}
+            </div>
+          </motion.div>
+          
+          {/* 18 Bills Section */}
+          <motion.div
+            variants={unifiedVariants}
+            initial="hidden"
+            animate={treasuresControls}
+            className="text-center p-6 mt-12"
+          >
+            <h3 className={`${luxurious.className} text-[60px] font-semibold text-white mb-6`}>
+              18 Bills
+            </h3>
+            <div className="space-y-3">
+              {billnames.map((name, index) => (
+                <motion.p
+                  key={index}
+                  variants={unifiedVariants}
+                  custom={index}
+                  className={`${quicksand.className} text-lg text-gray-100`}
+                >
+                  {name}
                 </motion.p>
               ))}
             </div>
@@ -850,10 +940,3 @@ const treasureNames = [
   );
 }
 
-function ResetScrollOnMount({ setScrollEnabled }: { setScrollEnabled: (v: boolean) => void }) {
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    setScrollEnabled(false);
-  }, [setScrollEnabled]);
-  return null;
-}
