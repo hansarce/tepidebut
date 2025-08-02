@@ -377,10 +377,10 @@ const billnames = [
             <Image
               src="/umbrella.png"
               alt="Umbrella Top Left"
-              width={500}
+              width={500} 
               height={500}
               priority
-              className="animate-spin-slow"
+              className="animate-spin-slow "
               style={{ animationDuration: "15s" }}
             />
           </div>
@@ -399,9 +399,9 @@ const billnames = [
           <div className="absolute inset-0 bg-black/80 z-10" />
           {/* Content */}
           <div className="relative z-30 text-[20px] text-white text-center pt-[320px] fade-in">
-            <p className={quicksand.className}>You are cordially invited to <br />
+            <p className={quicksand.className + " md:text-[25px]"}>You are cordially invited to <br />
             the 18th Birthday of </p>
-            <h1 className={luxurious.className + " text-[70px] leading-[1] pt-[20px]"}>Chrisette <br />
+            <h1 className={luxurious.className + " text-[70px] md:text-[100px] leading-[1] pt-[20px]"}>Chrisette <br />
             Stephanie So</h1>
             <div className="flex justify-center mt-6">
                         <button onClick={handleScrollDown} aria-label="Scroll Down">
@@ -473,7 +473,7 @@ const billnames = [
          <div className="absolute inset-0 bg-black/40"></div>
         {/* Card with background */}
         <div 
-          className="mx-auto w-[320px] h-[720px] rounded-2xl flex flex-col items-center justify-start relative overflow-hidden p-8"
+          className="mx-auto w-[320px] h-[720px] md:w-[500px] md:h-[920px] rounded-2xl flex flex-col items-center justify-start relative overflow-hidden p-8"
           style={{
             backgroundImage: "url('/scrollpageforevent.png')",
             backgroundSize: "cover",
@@ -482,31 +482,31 @@ const billnames = [
         >
           {/* Event Header */}
           <div className="text-center mb-5 mt-20">
-            <h1 className={`${luxurious.className} text-[50px] font-bold text-[#D02B31] flex flex-col`}>
+            <h1 className={`${luxurious.className} text-[50px] md:text-[80px] font-bold text-[#D02B31] flex flex-col`}>
   <span>Chrisette's</span>
   <span className="-mt-6">Debut</span> {/* Adjust negative margin as needed */}
 </h1>
-            <p className={`${quicksand.className} text-[14px]  text-[#D02B31] `}>Don't miss this wonderful night.</p>
-            <p className={`${quicksand.className} text-[14px]  text-[#D02B31] `}>A flowery night to remember</p>
+            <p className={`${quicksand.className} text-[14px] md:text-[18px]  text-[#D02B31] `}>Don't miss this wonderful night.</p>
+            <p className={`${quicksand.className} text-[14px] md:text-[18px]  text-[#D02B31] `}>A flowery night to remember</p>
           </div>
 
           {/* Event Details */}
           <div className="w-full text-center">
             <div className=" pb-4">
-              <p className={`${quicksand.className} text-[14px]  text-[#D02B31] `}>Dress: Cocktail/Semi-Formal</p>
-              <p className={`${quicksand.className} text-[14px]  text-[#D02B31] `}>(Pastel Pink/Yellow/White)</p>
+              <p className={`${quicksand.className} text-[14px] md:text-[18px]  text-[#D02B31] `}>Dress: Cocktail/Semi-Formal</p>
+              <p className={`${quicksand.className} text-[14px] md:text-[18px]  text-[#D02B31] `}>(Pastel Pink/Yellow/White)</p>
             </div>
 
             <div className="pb-4">
-              <p className={`${quicksand.className} text-[14px]  text-[#D02B31] `}>Venue: Casa Signora</p>
+              <p className={`${quicksand.className} text-[14px] md:text-[18px] text-[#D02B31] `}>Venue: Casa Signora</p>
             </div>
 
             <div className="pb-4">
-              <p className={`${quicksand.className} text-[14px]  text-[#D02B31] `}>Time: August 24, 2025 4:00 PM</p>
+              <p className={`${quicksand.className} text-[14px] md:text-[18px] text-[#D02B31] `}>Time: August 24, 2025 4:00 PM</p>
             </div>
 
             <div className="pt-2">
-              <p className={`${quicksand.className} text-xl font-bold text-[#D02B31]  mb-2`}>Event Location</p>
+              <p className={`${quicksand.className} text-xl font-bold text-[#D02B31] md:text-[25px] mb-2`}>Event Location</p>
               <div className="rounded-lg overflow-hidden">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3866.424982414458!2d120.97443017592654!3d14.2867226861633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d5c5897658d9%3A0x7305c4cfadc91193!2sCasa%20Signora!5e0!3m2!1sen!2sph!4v1752996706860!5m2!1sen!2sph"
@@ -516,7 +516,7 @@ const billnames = [
                   allowFullScreen 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="rounded-lg flex justify-center ml-9"
+                  className="rounded-lg md:w-[245px] md:ml-24 md:h-[210px] flex justify-center ml-9"
                 ></iframe>
               </div>
             </div>
@@ -660,7 +660,7 @@ const billnames = [
             </div>
             {/* Countdown Card */}
             <div
-              className="mx-auto w-[340px] h-[220px] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden"
+              className="mx-auto w-[340px] h-[220px] md:w-[500px] md:h-[300px] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden"
               style={{
                 backgroundImage: "url('/fan.png')",
                 backgroundSize: "cover",
@@ -707,7 +707,7 @@ const billnames = [
            backgroundPosition: "center",
          }}>
            <div className="absolute inset-0 bg-black/40"></div>
-        <h2 className={`${quicksand.className} text-4xl font-bold text-white -mb-12 drop-shadow-lg z-10`}>Photos</h2>
+        <h2 className={`${quicksand.className} text-4xl font-bold text-white -mb-12 md:text-[60px] drop-shadow-lg z-10`}>Photos</h2>
         <Carousel />
       </section>
 
@@ -737,8 +737,8 @@ const billnames = [
             animate={controls}
             className="text-center p-8"
           >
-            <h3 className={`${luxurious.className} text-[60px]  font-semibold text-white mb-8 font-serif`}>18 Roses</h3>
-            <div className={`${quicksand.className} space-y-2 text-lg text-white font-medium`}>
+            <h3 className={`${luxurious.className} text-[60px] md:text-[90px] md:mb-4 font-semibold text-white mb-8 font-serif`}>18 Roses</h3>
+            <div className={`${quicksand.className} space-y-2 md:text-[22px] text-lg text-white font-medium`}>
               {roses.map((name, index) => (
                 <motion.div 
                   key={index}
@@ -757,8 +757,8 @@ const billnames = [
             animate={controls}
             className="text-center p-8"
           >
-            <h3 className={`${luxurious.className} text-[60px] font-semibold text-white mb-8 font-serif`}>18 Candles</h3>
-            <div className={`${quicksand.className} space-y-2 text-lg text-gray-100 font-medium`}>
+            <h3 className={`${luxurious.className} text-[60px] md:text-[90px] md:mb-4   font-semibold text-white mb-8 font-serif`}>18 Candles</h3>
+            <div className={`${quicksand.className} space-y-2 text-lg md:text-[22px]  text-gray-100 font-medium`}>
               {candles.map((name, index) => (
                 <motion.div 
                   key={index}
@@ -799,16 +799,16 @@ const billnames = [
             animate={treasuresControls}
             className="text-center p-6"
           >
-            <h3 className={`${luxurious.className} text-[60px]  font-semibold text-white mb-6`}>
+            <h3 className={`${luxurious.className} text-[60px] md:text-[90px]  font-semibold text-white mb-6`}>
               18 Treasures (Gifts)
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-3 ">
               {treasureNames.map((name, index) => (
                 <motion.p
                   key={index}
                   variants={unifiedVariants}
                   custom={index}
-                  className={`${quicksand.className} text-lg text-gray-100`}
+                  className={`${quicksand.className} text-lg md:text-[22px]  text-gray-100`}
                 >
                   {name}
                 </motion.p>
@@ -823,7 +823,7 @@ const billnames = [
             animate={treasuresControls}
             className="text-center p-6 mt-12"
           >
-            <h3 className={`${luxurious.className} text-[60px] font-semibold text-white mb-6`}>
+            <h3 className={`${luxurious.className} text-[60px] md:text-[90px] font-semibold text-white mb-6`}>
               18 Bills
             </h3>
             <div className="space-y-3">
@@ -832,7 +832,7 @@ const billnames = [
                   key={index}
                   variants={unifiedVariants}
                   custom={index}
-                  className={`${quicksand.className} text-lg text-gray-100`}
+                  className={`${quicksand.className} text-lg md:text-[22px]  text-gray-100`}
                 >
                   {name}
                 </motion.p>
@@ -875,8 +875,8 @@ const billnames = [
     </div>
   ) : (
     <>
-      <h2 className={`${luxurious.className} text-[60px] font-bold mb-4 text-[#D12B31] z-10`}>RSVP</h2>
-      <p className={`${quicksand.className} mb-6 text-lg flex flex-col items-center justify-center text-[#D12B31] text-center z-10`}>
+      <h2 className={`${luxurious.className} text-[60px] md:text-[90px] font-bold mb-4 text-[#D12B31] z-10`}>RSVP</h2>
+      <p className={`${quicksand.className} mb-6 text-lg flex md:text-[20px] flex-col items-center justify-center text-[#D12B31] text-center z-10`}>
         Kindly confirm your attendance 
       </p>
       
@@ -890,37 +890,37 @@ const billnames = [
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 z-10 w-full max-w-md px-4"
       >
-        <div>
-          <h3 className={`${quicksand.className} text-lg text-[#D12B31] mb-1`}>Your Name</h3>
+        <div className="md:flex md:flex-col md:items-center md:justify-center">
+          <h3 className={`${quicksand.className} text-lg md:text-[25px] text-[#D12B31] mb-1`}>Your Name</h3>
           <input
             type="text"
             name="name"
             placeholder="Enter your name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full p-3 rounded border text-[#D12B31] border-[#D12B31] bg-white/90"
+            className="w-full p-3 md:w-[500px]  rounded border text-[#D12B31] border-[#D12B31] bg-white/90"
             required
           />
         </div>
         
-        <div>
-          <h3 className={`${quicksand.className} text-lg text-[#D12B31] mb-1`}>Will you attend?</h3>
+        <div className="md:flex md:flex-col md:items-center md:justify-center">
+          <h3 className={`${quicksand.className} text-lg md:text-[25px] text-[#D12B31] mb-1`}>Will you attend?</h3>
           <select 
             name="attendance"
             value={formData.attendance}
             onChange={handleChange}
-            className="w-full p-3 rounded border text-[#D12B31] border-[#D12B31] bg-white/90"
+            className="w-full p-3 rounded border md:w-[500px]   text-[#D12B31] border-[#D12B31] bg-white/90"
             required
           >
             <option value="yes">Yes, I will attend</option>
             <option value="no">No, I can't make it</option>
           </select>
         </div>
-        
+        <div className="flex justify-center">
         <button
           type="submit"
           disabled={isLoading}
-          className={`${quicksand.className} bg-[#D12B31] text-white font-semibold py-3 rounded hover:bg-[#D12B31]/90 transition disabled:opacity-50 flex items-center justify-center gap-2`}
+          className={`${quicksand.className} md:w-[500px] w-[500px] bg-[#D12B31]  text-white font-semibold py-3 rounded hover:bg-[#D12B31]/90 transition disabled:opacity-50 flex items-center justify-center gap-2`}
         >
           {isLoading ? (
             <>
@@ -932,6 +932,7 @@ const billnames = [
             </>
           ) : 'Submit'}
         </button>
+        </div>
       </form>
     </>
   )}
