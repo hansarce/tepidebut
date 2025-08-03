@@ -313,7 +313,7 @@ const billnames = [
   });
 
   useEffect(() => {
-    const target = new Date("2025-08-19T16:00:00");
+    const target = new Date("2025-08-24T16:00:00");
     const updateCountdown = () => {
       const now = new Date();
       const diff = target.getTime() - now.getTime();
