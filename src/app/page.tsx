@@ -493,16 +493,16 @@ const billnames = [
           {/* Event Details */}
           <div className="w-full text-center">
             <div className=" pb-4">
-              <p className={`${quicksand.className} text-[14px] md:text-[18px]  text-[#D02B31] `}>Dress: Cocktail/Semi-Formal</p>
-              <p className={`${quicksand.className} text-[14px] md:text-[18px]  text-[#D02B31] `}>(Pastel Pink/Yellow/White)</p>
+              <p className={`${quicksand.className} text-[14px] md:text-[18px]  text-[#D02B31] `}><span className="font-bold">Dress:</span> Cocktail/Semi-Formal</p>
+              <p className={`${quicksand.className} text-[14px] md:text-[18px] font-bold text-[#D02B31] `}>(Pastel Pink/Yellow/White)</p>
             </div>
 
             <div className="pb-4">
-              <p className={`${quicksand.className} text-[14px] md:text-[18px] text-[#D02B31] `}>Venue: Casa Signora</p>
+              <p className={`${quicksand.className} text-[14px] md:text-[18px] text-[#D02B31] `}><span className="font-bold">Venue:</span> Casa Signora</p>
             </div>
 
             <div className="pb-4">
-              <p className={`${quicksand.className} text-[14px] md:text-[18px] text-[#D02B31] `}>Time: August 24, 2025 4:00 PM</p>
+              <p className={`${quicksand.className} text-[14px] md:text-[18px] text-[#D02B31] `}><span className="font-bold">Time:</span> August 24, 2025 4:00 PM</p>
             </div>
 
             <div className="pt-2">
